@@ -1,0 +1,99 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 12,
+  "modules-left": ["custom/wmname", "clock","mpris"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "tray",
+    "power-profiles-daemon",
+    "battery",
+    "network",
+    "memory",
+    "backlight",
+    "pulseaudio",
+  ],
+
+  "custom/wmname": {
+    "format": "  ",
+    "tooltip": false,
+    "interval": "once",
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8,
+  },
+  "mpris": {
+	"format": "{player_icon} {status_icon} {title}",
+	"format-paused": "{player_icon} {status_icon} {title}",
+	"player-icons": {
+		"default": "▶",
+		"spotify": "",
+		"firefox": "󰈹",
+	},
+	"status-icons": {
+		"paused": "⏸"
+	},
+	// "ignored-players": ["firefox"]
+},
+  "clock": {
+    "interval": 1,
+    "locale": "C",
+    "format": "󰥔 {:%I:%M %p}",
+    "format-alt": " {:%a,%b %d}",
+    "tooltip": false,
+  },
+  "memory": {
+    "interval": 2,
+    "format": " {percentage}%",
+    "tooltip": true,
+    "tooltip-format": "{used:0.2f}GB / {total:0.2f}GB",
+    "warning": 70,
+    "critical": 90,
+    "on-click": "kitty btop",
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+    "on-scroll-down": "brightnessctl -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl -c backlight set +1%",
+    "on-click-right": "brightnessctl -c backlight set 1%",
+    "on-click-middle": "brightnessctl -c backlight set 100%",
+  },
+  "power-profiles-daemon": {
+  "format": "{icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "performance": "󰿗 ",
+    "balanced": " ",
+    "power-saver": " "
+  }
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-full": "󱟢",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+    "tooltip": false,
+  },
+  "network": {
+    "format-wifi": "󰖩 CONN",
+    "format-ethernet": "{ifname} {ipaddr}/{cidr}",
+    "format-disconnected": "󰖪 NCON",
+    "tooltip-format": "{essid}: {ipaddr}\n󱑽 {frequency} 󰣸 {signalStrength}%",
+  },
+  "pulseaudio": {
+    "format": " {volume}% ",
+    "format-muted": " ",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+  }
+}
