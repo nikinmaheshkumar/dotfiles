@@ -4,7 +4,7 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PNPM_HOME/bin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dnf docker docker-compose fzf history-substring-search zoxide zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git dnf docker docker-compose fzf history-substring-search zoxide zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
@@ -103,11 +103,25 @@ eval "$(starship init zsh)"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+alias kt="kitty --directory $PWD"
 # pnpm
-export PNPM_HOME="/home/nikin/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export KITTY_SHELL_INTEGRATION="enabled"
+
+autoload -Uz compinit
+compinit
+
+if [[ -n "$KITTY_PID" ]]; then
+    source "$KITTY_INSTALLATION_DIR/shell-integration/zsh/kitty-integration"
+fi
+alias jenkins='java -jar ~/apps/jenkins/jenkins.war'
